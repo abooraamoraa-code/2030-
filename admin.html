@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بوابة المشرف | أبو العز العمري</title>
+<style>
+:root {
+    --bg-deep: #030307;
+    --bg-card: #0a0b12;
+    --accent-blue: #0084ff;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+body { background: var(--bg-deep); color: var(--text-main); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+
+.login-box, .admin-panel {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    text-align: center;
+}
+h2 { margin-bottom: 20px; color: #fff; }
+input {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    margin-bottom: 20px;
+    outline: none;
+    text-align: center;
+}
+.btn {
+    background: var(--accent-blue);
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 132, 255, 0.3);
+}
+.error { color: #ef4444; font-size: 13px; margin-top: 10px; display: none; }
+
+/* لوحة التحكم المخفية تظهر بعد كلمة المرور */
+.admin-panel { display: none; max-width: 700px; text-align: right; }
+.stat-box { background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
+</style>
+</head>
+<body>
+
+<!-- شاشة تسجيل الدخول -->
+<div class="login-box" id="loginBox">
+    <h2>🔐 بوابة إدارة أبو العز</h2>
+    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">أدخل كلمة المرور الخاصة بالمشرف للوصول</p>
+    <input type="password" id="adminPass" placeholder="أدخل كلمة المرور...">
+    <button class="btn" onclick="checkPassword()">دخول النظام</button>
+    <div class="error" id="errorMsg">❌ كلمة المرور غير صحيحة!</div>
+</div>
+
+<!-- لوحة التحكم المحمية -->
+<div class="admin-panel" id="adminPanel">
+    <h2 style="margin-bottom: 10px;">🛡️ لوحة تحكم شركة أبو العز</h2>
+    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 25px;">مرحباً بك يا أبو العز، النظام يعمل بكفاءة وأمان تام.</p>
+    
+    <div class="stat-box">
+        <h3 style="font-size: 16px; color: #fff; margin-bottom: 8px;">حالة النظام البرمجي</h3>
+        <p style="font-size: 13px; color: var(--text-muted);">جميع السيرفرات وقواعد البيانات متصلة ومحمية. صُممت هذه الصفحة لتكون منفصلة تماماً ومنعزلة عن واجهة العملاء.</p>
+    </div>
+
+    <button class="btn" style="background: #ef4444;" onclick="logout()">تسجيل الخروج</button>
+</div>
+
+<script>
+function checkPassword() {
+    const pass = document.getElementById('adminPass').value;
+    // كلمة المرور المطلوبة
+    if (pass === "ابو العز 2012") {
+        document.getElementById('loginBox').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+    } else {
+        document.getElementById('errorMsg').style.display = 'block';
+    }
+}
+
+function logout() {
+    document.getElementById('adminPass').value = '';
+    document.getElementById('adminPanel').style.display = 'none';
+    document.getElementById('loginBox').style.display = 'block';
+    document.getElementById('errorMsg').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
